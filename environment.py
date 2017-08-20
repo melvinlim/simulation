@@ -24,9 +24,10 @@ class Environment:
 	def look(self,x,y):
 		xt=x+1
 		yt=y+1
-		for row in self.grid[xt-1:xt+2]:
-			print row[yt-1:yt+2]
-		#return self.grid[x-1:2][y-1:2]
+		surroundings=[]
+		for row in self.grid[yt-1:yt+2]:
+			tmp=row[xt-1:xt+2]
+			surroundings.append(tmp)
 	def insert(self,item,itemName,x,y):
 		if itemName in self.objects:
 			self.objects[itemName].append(item)
@@ -37,5 +38,5 @@ class Environment:
 		assert(y>=0 and y<self.ysize)
 		xt=x+1
 		yt=y+1
-		assert(self.grid[xt][yt]=='.')
-		self.grid[xt][yt]=symbol
+		assert(self.grid[yt][xt]=='.')
+		self.grid[yt][xt]=symbol
