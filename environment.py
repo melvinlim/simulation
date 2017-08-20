@@ -19,7 +19,11 @@ class Environment:
 			print
 		print
 	def step(self):
+		for agent in self.objects['agent']:
+			agent.step()
 		self.show()
+	def look(self,x,y):
+		print 'looking at '+str(x)+' '+str(y)
 	def insert(self,item,itemName,x,y):
 		if itemName in self.objects:
 			self.objects[itemName].append(item)
