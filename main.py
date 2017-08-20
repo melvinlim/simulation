@@ -5,6 +5,7 @@ def insertAgent(env,x,y):
 	agent=Agent(env,x,y)
 	env.insert(agent,agent.name,x,y)
 def init(env):
+	insertAgent(env,0,5)
 	insertAgent(env,1,2)
 	insertAgent(env,3,3)
 enviro=Environment()
