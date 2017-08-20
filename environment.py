@@ -28,6 +28,7 @@ class Environment:
 		for row in self.grid[yt-1:yt+2]:
 			tmp=row[xt-1:xt+2]
 			surroundings.append(tmp)
+		return surroundings
 	def insert(self,item,itemName,x,y):
 		if itemName in self.objects:
 			self.objects[itemName].append(item)

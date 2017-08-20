@@ -7,8 +7,14 @@ class Agent:
 		self.y=y
 		self.name=NAME
 		self.symbol=symbol
+	def disp(self,surroundings):
+		for row in surroundings:
+			for col in row:
+				print col,
+			print
 	def look(self):
-		return self.env.look(self.x,self.y)
+		surroundings=self.env.look(self.x,self.y)
+		self.disp(surroundings)
+		return surroundings
 	def step(self):
 		surroundings=self.look()
-		print surroundings
