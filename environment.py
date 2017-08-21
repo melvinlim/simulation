@@ -1,3 +1,4 @@
+import random
 DEFX=10
 DEFY=10
 class Environment:
@@ -29,15 +30,39 @@ class Environment:
 			tmp=row[xt-1:xt+2]
 			surroundings.append(tmp)
 		return surroundings
+	def transpose(self,x,y):
+		assert(x>=0 and x<self.xsize)
+		assert(y>=0 and y<self.ysize)
+		xt=x+1
+		yt=y+1
+		return (xt,yt)
+	def occupied(self,x,y):
+		(xt,yt)=self.transpose(x,y)
+		if self.grid[yt][xt]=='.':
+			return False
+		return True
+	def randomAvailable(self):
+		x=random.randint(0,self.xsize-1)
+		y=random.randint(0,self.ysize-1)
+		x0=x
+		y0=y
+		while True:
+			x=x+1
+			if x>=self.xsize:
+				x=0
+				y+=1
+				if y>=self.ysize:
+					y=0
+			if not self.occupied(x,y):
+				return (x,y)
+			if x==x0 and y==y0:
+				return None
 	def insert(self,item,itemName,x,y):
 		if itemName in self.objects:
 			self.objects[itemName].append(item)
 		else:
 			self.objects[itemName]=[item]
 		symbol=item.symbol
-		assert(x>=0 and x<self.xsize)
-		assert(y>=0 and y<self.ysize)
-		xt=x+1
-		yt=y+1
+		(xt,yt)=self.transpose(x,y)
 		assert(self.grid[yt][xt]=='.')
 		self.grid[yt][xt]=symbol
