@@ -3,7 +3,7 @@ DEFX=10
 DEFY=10
 class Environment:
 	def __init__(self,xsize=DEFX,ysize=DEFY):
-		self.objects={}
+		self.things={}
 		self.xsize=xsize
 		self.ysize=ysize
 		self.grid=[]
@@ -19,8 +19,11 @@ class Environment:
 			print
 		print
 	def step(self):
-		for agent in self.objects['agent']:
-			agent.step()
+		for category in self.things:
+			for thing in self.things[category]:
+				thing.step()
+#		for agent in self.things['agent']:
+#			agent.step()
 		self.show()
 	def look(self,x,y):
 		xt=x+1
@@ -60,10 +63,10 @@ class Environment:
 	def insert(self,item,x,y):
 		itemName=item.name
 		assert(itemName!=None)
-		if itemName in self.objects:
-			self.objects[itemName].append(item)
+		if itemName in self.things:
+			self.things[itemName].append(item)
 		else:
-			self.objects[itemName]=[item]
+			self.things[itemName]=[item]
 		symbol=item.symbol
 		(xt,yt)=self.transpose(x,y)
 		assert(self.grid[yt][xt]=='.')
