@@ -57,7 +57,9 @@ class Environment:
 				return (x,y)
 			if x==x0 and y==y0:
 				return None
-	def insert(self,item,itemName,x,y):
+	def insert(self,item,x,y):
+		itemName=item.name
+		assert(itemName!=None)
 		if itemName in self.objects:
 			self.objects[itemName].append(item)
 		else:
