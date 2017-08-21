@@ -1,12 +1,15 @@
+from thing import Thing
 NAME='agent'
-class Agent:
-	def __init__(self,env=0,x=0,y=0,symbol='a'):
-		assert(env!=0)
-		self.env=env
-		self.x=x
-		self.y=y
+SYMBOL='a'
+class Agent(Thing):
+	def __init__(self,env=0,x=0,y=0):
+		super(Agent,self).__init__(env,x,y)
+#		assert(env!=0)
+#		self.env=env
+#		self.x=x
+#		self.y=y
 		self.name=NAME
-		self.symbol=symbol
+		self.symbol=SYMBOL
 	def disp(self,surroundings):
 		for row in surroundings:
 			for col in row:
